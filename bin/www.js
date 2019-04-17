@@ -4,26 +4,26 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('we:server');
-var http = require('http');
+const app = require('../app');
+const debug = require('debug')('we:server');
+const http = require('http');
 const mongoose = require('mongoose');
 
+// 数据库名
 const DBName = 'test'
+const PORT = '3000'
 
-mongoose.connect('mongodb://@localhost:27017/' + DBName, err=>{
-  if(err)
-    console.log("Failed to connect MongoDB Server!");
+// 连接数据库
+mongoose.connect('mongodb://@localhost:27017/' + DBName, {useNewUrlParser: true}, err=>{
+  if(err){
+    console.log("Failed to connect MongoDB Server!")
+  }
   else
-    console.log("Succeed in connecting MongoDB Server!");
+    console.log("Succeed in connecting MongoDB Server!")
 });
 
-/**
- * Get port from environment and store in Express.
- */
-
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+// 设置端口
+app.set('port', PORT);
 
 /**
  * Create HTTP server.

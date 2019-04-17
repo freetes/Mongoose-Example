@@ -4,14 +4,16 @@ const Models = require('../model/dataModel');
 const Api = {
   // GET /test
   test: async (req, res)=>{
-    // 生成日志
+    // 获取日志长度
     let logsLength = await Models.Log.find({}).count()
 
+    // 生成日志数据
     let result = await Models.Log.create({
       createAt: Date.now(),
       message: `This is the No.${logsLength + 1} log.`
     })
 
+    // 返回测试结果
     return res.json({
       result: true,
       data: result,
